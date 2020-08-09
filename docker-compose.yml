@@ -1,6 +1,19 @@
 version: '3'
 
 services:
+  python:
+    build:
+      context: .
+      dockerfile: ./docker/python/Dockerfile
+    container_name: python
+    hostname: python
+    volumes:
+      - ./server-src:/src
+    ports:
+      - '8000:8000'
+    depends_on:
+      - db
+
   node:
     build:
       context: .
@@ -12,10 +25,20 @@ services:
     hostname: node
     command: sh -c 'serve ./dist -l 3000'
     volumes:
-      - ./src:/src
+      - ./client-src:/src
       - /src/node_modules
     ports:
       - '${NODE_PORT}:3000'
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+    ports:
+      - '80:80'
+    depends_on:
+      - python
+      - node
 
   db:
     image: postgres:latest
