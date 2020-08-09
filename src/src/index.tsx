@@ -15,6 +15,6 @@ class Hello extends React.Component<HelloProps> {
 }
 
 ReactDOM.render(
-  <Hello name="React on Docker" />,
+  <Hello name="Docker" />,
   document.getElementById('root')
 );
