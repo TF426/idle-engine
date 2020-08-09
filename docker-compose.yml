@@ -12,7 +12,7 @@ services:
     hostname: node
     command: sh -c 'cd src && yarn start'
     volumes:
-      - ./node-src:/src
+      - ./src:/src
       - /src/node_modules
     ports:
       - '3000:3000'
