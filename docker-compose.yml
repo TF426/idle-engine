@@ -15,7 +15,7 @@ services:
       - ./src:/src
       - /src/node_modules
     ports:
-      - '3000:3000'
+      - '${NODE_PORT}:3000'
 
   db:
     image: postgres:latest
