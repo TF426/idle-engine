@@ -10,7 +10,7 @@ services:
     tty: true
     container_name: node
     hostname: node
-    command: sh -c 'cd src && yarn start'
+    command: sh -c 'serve ./dist -l 3000'
     volumes:
       - ./src:/src
       - /src/node_modules
