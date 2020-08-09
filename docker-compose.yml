@@ -1,19 +1,6 @@
 version: '3'
 
 services:
-  python:
-    build:
-      context: .
-      dockerfile: ./docker/python/Dockerfile
-    container_name: python
-    hostname: python
-    volumes:
-      - ./python-src:/src
-    ports:
-      - '8000:8000'
-    depends_on:
-      - db
-
   node:
     build:
       context: .
@@ -29,16 +16,6 @@ services:
       - /src/node_modules
     ports:
       - '3000:3000'
-
-  nginx:
-    image: nginx:latest
-    volumes:
-      - ./docker/nginx/conf.d:/etc/nginx/conf.d
-    ports:
-      - '80:80'
-    depends_on:
-      - python
-      - node
 
   db:
     image: postgres:latest
