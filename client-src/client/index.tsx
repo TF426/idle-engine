@@ -1,20 +1,11 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+import MainMenu from './components/mainmenu';
 
-interface HelloProps {
-  name?: string;
+function App() {
+  return (
+    <MainMenu />
+  );
 }
 
-class Hello extends React.Component<HelloProps> {
-  public render(): React.ReactNode {
-    const name = this.props.name ?? 'Unknown';
-    return (
-      <p>Hello, {name}!</p>
-    );
-  }
-}
-
-ReactDOM.render(
-  <Hello name="Docker" />,
-  document.getElementById('root')
-);
+ReactDOM.render(<App />, document.querySelector('#app'));
